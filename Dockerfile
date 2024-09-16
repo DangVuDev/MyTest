@@ -1,28 +1,30 @@
-# Use the official ASP.NET Core 8.0 runtime as a parent image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-# Use the SDK image to build the application
+# Chỉ định image nền tảng .NET SDK để build ứng dụng
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
 
-# Copy the csproj and restore as distinct layers
-COPY ["MyAPI/MyAPI.csproj", "MyAPI/"]
-RUN dotnet restore "MyAPI/MyAPI.csproj"
-
-# Copy the rest of the application
-COPY . .
-WORKDIR "/src/MyAPI"
-RUN dotnet build "MyAPI.csproj" -c Release -o /app/build
-
-# Publish the app
-FROM build AS publish
-RUN dotnet publish "MyAPI.csproj" -c Release -o /app/publish
-
-# Use the base image to run the app
-FROM base AS final
+# Chỉ định thư mục làm việc
 WORKDIR /app
-COPY --from=publish /app/publish .
+
+# Sao chép file csproj và khôi phục phụ thuộc
+COPY *.csproj ./
+RUN dotnet restore
+
+# Sao chép toàn bộ mã nguồn vào container
+COPY . ./
+
+# Build ứng dụng
+RUN dotnet publish -c Release -o /out
+
+# Chỉ định image nền tảng .NET Runtime để chạy ứng dụng
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+
+# Chỉ định thư mục làm việc
+WORKDIR /app
+
+# Sao chép ứng dụng đã build từ container build vào container runtime
+COPY --from=build /out .
+
+# Mở cổng cho ứng dụng
+EXPOSE 80
+
+# Chạy ứng dụng
 ENTRYPOINT ["dotnet", "MyAPI.dll"]
