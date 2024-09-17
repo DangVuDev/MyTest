@@ -77,8 +77,7 @@ builder.WebHost.ConfigureKestrel(options =>
 });
 
 var app = builder.Build();
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-app.Urls.Add($"http://*:{port}");
+app.Urls.Add("http://*:" + Environment.GetEnvironmentVariable("PORT") ?? "5047");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
