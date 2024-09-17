@@ -81,10 +81,9 @@ app.Urls.Add("http://*:" + Environment.GetEnvironmentVariable("PORT") ?? "5047")
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
-//{
- //   app.UseSwagger();
- //   app.UseSwaggerUI();
-//}
+app.UseSwagger(); 
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
