@@ -8,10 +8,10 @@ namespace MyAPI.Services
     {
         private readonly IMongoCollection<Account> _collection; 
 
-        public AccountServices(IMongoClient mongoClient, IConfiguration configuration)
+        public AccountServices(IMongoClient mongoClient, IDBMonggoSetting setting)
         {
-            var dataname = configuration["DatabaseSettings:DatabaseName"];  
-            _collection = mongoClient.GetDatabase(dataname).GetCollection<Account>("Account");
+            var dataname = mongoClient.GetDatabase(setting.DatabaseName);  
+            _collection = dataname.GetCollection<Account>("Account");
         }
 
         #region GET: Retrieve a single account by Id

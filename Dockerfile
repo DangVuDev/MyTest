@@ -5,11 +5,11 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Sao chép file csproj và khôi phục phụ thuộc
-COPY *.csproj ./
+COPY *.csproj ./ 
 RUN dotnet restore
 
 # Sao chép toàn bộ mã nguồn vào container
-COPY . ./
+COPY . .
 
 # Build ứng dụng
 RUN dotnet publish -c Release -o /out
@@ -23,7 +23,10 @@ WORKDIR /app
 # Sao chép ứng dụng đã build từ container build vào container runtime
 COPY --from=build /out .
 
-# Mở cổng cho ứng dụng
+# Thiết lập biến môi trường để ứng dụng lắng nghe trên đúng cổng được Render cấp phát
+ENV ASPNETCORE_URLS=http://*:$PORT
+
+# Mở cổng cho ứng dụng (Render sẽ tự gán cổng thông qua biến môi trường PORT)
 EXPOSE 80
 
 # Chạy ứng dụng

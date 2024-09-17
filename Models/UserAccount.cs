@@ -7,7 +7,7 @@ namespace MyAPI.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)] 
-        public string Id { get; set; } 
+        public string Id { get; set; } = string.Empty;
 
         public string? Username { get; set; }
         public string? Password { get; set; }
@@ -18,9 +18,10 @@ namespace MyAPI.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+    
 
-        public string? Name { get; set; }
+        public string Id { get; set; } = string.Empty; 
+        public string Name { get; set; } = string.Empty;
         public string? Sotaikhoan { get; set; }
         public decimal Balance { get; set; }
     }

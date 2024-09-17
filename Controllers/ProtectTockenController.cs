@@ -8,7 +8,7 @@ namespace MyAPI.Controllers
     [Route("api/[controller]")]
     public class ProtectedController : ControllerBase
     {
-        [Authorize(Policy = "AdminPolicy")]
+        [Authorize(Roles ="Admin")]
         [HttpGet]
         public IActionResult AdminOnlyMethod()
         {

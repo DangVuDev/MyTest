@@ -1,0 +1,27 @@
+# Ignore node_modules folder (nếu bạn dùng Node.js hoặc frontend)
+node_modules
+npm-debug.log
+
+# Ignore các file log
+*.log
+
+# Ignore tệp dữ liệu và các tệp không cần thiết
+*.sqlite
+*.pdb
+*.mdf
+*.ldf
+
+# Ignore thư mục xuất bản từ các build cũ
+/out
+/publish
+
+# Ignore thư mục và file tạm
+bin/
+obj/
+*.tmp
+*.bak
+*.swp
+
+# Ignore file config nhạy cảm nếu có (bạn có thể chọn lựa, không nhất thiết phải thêm)
+appsettings.Development.json
+secrets.json

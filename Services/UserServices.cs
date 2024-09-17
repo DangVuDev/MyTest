@@ -12,10 +12,9 @@ namespace MyAPI.Services
         private readonly IMongoCollection<User> _collection;
 
         // Constructor to inject IConfiguration and set up MongoDB collection
-        public UserServices(IMongoClient mongoClient, IConfiguration configuration)
+        public UserServices(IMongoClient mongoClient,IDBMonggoSetting setting)
         {
-            var databaseName = configuration["DatabaseSettings:DatabaseName"];
-            _collection = mongoClient.GetDatabase(databaseName).GetCollection<User>("User");
+            _collection = mongoClient.GetDatabase(setting.DatabaseName).GetCollection<User>("User");
         }
 
         // GET: Retrieve a single user by Id

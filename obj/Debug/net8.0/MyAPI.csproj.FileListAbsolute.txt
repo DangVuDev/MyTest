@@ -70,3 +70,5 @@ D:\Benet\MyAPI\obj\Debug\net8.0\refint\MyAPI.dll
 D:\Benet\MyAPI\obj\Debug\net8.0\MyAPI.pdb
 D:\Benet\MyAPI\obj\Debug\net8.0\MyAPI.genruntimeconfig.cache
 D:\Benet\MyAPI\obj\Debug\net8.0\ref\MyAPI.dll
+D:\Benet\MyAPI\obj\Debug\net8.0\MyAPI.sourcelink.json
+D:\Benet\MyAPI\bin\Debug\net8.0\CloudinaryDotNet.dll
