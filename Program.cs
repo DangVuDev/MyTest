@@ -74,10 +74,6 @@ builder.Services.AddAuthorization(options =>
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(5047);
-    options.ListenAnyIP(5001, listenOptions =>
-    {
-        listenOptions.UseHttps();
-    });
 });
 
 var app = builder.Build();
